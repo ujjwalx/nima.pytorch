@@ -13,5 +13,5 @@ class EDMLoss(nn.Module):
         # cdf for values [1, 2, ..., 10]
         cdf_estimate = torch.cumsum(p_estimate, dim=1)
         cdf_diff = cdf_estimate - cdf_target
-        samplewise_emd = torch.sqrt(torch.mean(torch.pow(torch.abs(cdf_diff), 2)))
+        samplewise_emd = torch.sqrt(torch.mean(torch.pow(torch.abs(cdf_diff), 2), -1))
         return samplewise_emd.mean()
