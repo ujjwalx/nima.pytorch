@@ -16,9 +16,7 @@ class NIMA(nn.Module):
         super(NIMA, self).__init__()
         self.base_model = base_model
 
-        self.head = nn.Sequential(
-            nn.ReLU(inplace=True), nn.Dropout(p=drop_out), nn.Linear(input_features, 10), nn.Softmax(dim=1)
-        )
+        self.head = nn.Sequential(nn.Dropout(p=drop_out), nn.Linear(input_features, 10), nn.Softmax(dim=1))
 
     def forward(self, x):
         x = self.base_model(x)
